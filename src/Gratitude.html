@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gratitude Reflection App</title>
+    <link rel="stylesheet" href="mycss.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gratitude Reflection</h1>
+        <div id="prompt"></div>
+        <textarea id="entry" placeholder="🙋🥺🥹😓😞😖😭😢😥😁🙋😸☺️😊😀😃😄😁😆😂🙋‍♂️🙌🥳🎇🎈"></textarea>
+        <div>
+            <label for="mood">Rate your mood:</label>
+            <select id="mood">
+                <option value="Sad">😞</option>
+                <option value="Serious">😐</option>
+                <option value="Happy">😊</option>
+                <option value="Excited">😁</option>
+            </select>
+            <button id="submit">Submit</button>
+        </div>
+        <h2>Your Entries</h2>
+        <div id="entries"></div>
+        
+        <h2>Select a Date to View Entries</h2>
+        <select id="dateSelect"></select>
+        <button id="viewEntries">View Entries</button>
+        <div id="dateEntries"></div>
+    </div>
+    <script src="myJavascript.js"></script>
+</body>
+</html>
