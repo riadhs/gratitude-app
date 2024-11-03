@@ -5,7 +5,7 @@ const prompts = [
     "What’s something you learned today?"
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async() => {
     const promptElement = document.getElementById("prompt");
     const entryElement = document.getElementById("entry");
     const moodElement = document.getElementById("mood");
@@ -22,7 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.addEventListener("click", async () => {
         const entry = entryElement.value;
         const mood = moodElement.value;
-        const date = new Date().toLocaleDateString();
+         
+        const formatDate = (date) => {
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            
+            return `${month}/${day}/${year}`; // MM/DD/YYYY format
+        };
+
+        
+        
+        // Get the current date formatted as MM/DD/YYYY
+        const date = formatDate(new Date());
 
         if (entry) {
             // Send entry to the server
@@ -30,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                },
+                }, 
                 body: JSON.stringify({ entry, mood, date })
             });
 
@@ -64,21 +76,35 @@ document.addEventListener("DOMContentLoaded", () => {
         await displayEntriesForDate(selectedDate);
     });
 
-    // Display entries for the selected date
+    
     const displayEntriesForDate = async (date) => {
         dateEntriesElement.innerHTML = ''; // Clear previous entries
-        const response = await fetch(`/entries?date=${date}`);
+    
+        // Convert the input date (YYYY-MM-DD) to MM/DD/YYYY
+        const dateParts = date.split('-'); // Split the date string
+        const formattedDate = `${dateParts[1].padStart(2, '0')}/${dateParts[2].padStart(2, '0')}/${dateParts[0]}`;
+    
+        const response = await fetch(`/entries?date=${formattedDate}`);
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            dateEntriesElement.innerHTML = `<p>Error: ${errorData.error}</p>`;
+            return;
+        }
+        
         const entries = await response.json();
-
+    
         if (entries.length > 0) {
             entries.forEach(entry => {
                 dateEntriesElement.innerHTML += 
                     `<div>
-                        <strong>${date}</strong>: ${entry.entry} (Mood: ${entry.mood})
+                        <strong>${formattedDate}</strong>: ${entry.entry} (Mood: ${entry.mood})
                     </div>`;
             });
         } else {
             dateEntriesElement.innerHTML = `<p>No Record!</p>`;
         }
     };
+    
+    
 });
