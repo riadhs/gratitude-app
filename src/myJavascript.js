@@ -108,3 +108,38 @@ document.addEventListener("DOMContentLoaded", async() => {
     
     
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    	var calendarEl = document.getElementById('calendar');
+
+        if (calendarEl) {
+    	var calendar = new FullCalendar.Calendar(calendarEl, {
+      	headerToolbar: {
+        	left: 'title',
+        	center: 'prev,next today',
+        	right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      	},
+      	initialDate: new Date().toISOString().split('T')[0],
+      	navLinks: true, // can click day/week names to navigate views
+      	editable: true,
+      	selectable: true,
+      	events: [
+        	{
+         	 title: 'Halloween',
+         	 start: '2024-10-31',
+         	 color: 'purple'
+       	 	},
+         	{
+          	title: 'Thanksgiving',
+         	 start: '2024-11-28',
+          	color: 'burgundy'
+        	},
+      	      ]
+   	 });
+
+    	calendar.render();
+	
+      } else {
+	 console.error('FullCalendar not found');
+      }
+  });
