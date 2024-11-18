@@ -15,29 +15,29 @@ document.addEventListener("DOMContentLoaded", async() => {
     const viewEntriesButton = document.getElementById("viewEntries");
     const dateEntriesElement = document.getElementById("dateEntries");
 
-    // Display a random prompt
+ 
     promptElement.textContent = prompts[Math.floor(Math.random() * prompts.length)];
 
-    // Handle submission
+
     submitButton.addEventListener("click", async () => {
         const entry = entryElement.value;
         const mood = moodElement.value;
          
         const formatDate = (date) => {
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
+            const month = String(date.getMonth() + 1).padStart(2, '0'); 
             const day = String(date.getDate()).padStart(2, '0');
             const year = date.getFullYear();
             
-            return `${month}/${day}/${year}`; // MM/DD/YYYY format
+            return `${month}/${day}/${year}`; 
         };
 
         
         
-        // Get the current date formatted as MM/DD/YYYY
+  
         const date = formatDate(new Date());
 
         if (entry) {
-            // Send entry to the server
+            
             await fetch('/submit', {
                 method: 'POST',
                 headers: {
@@ -52,15 +52,15 @@ document.addEventListener("DOMContentLoaded", async() => {
                 </div>`;
             entriesElement.innerHTML += entryHtml;
 
-            // Update date dropdown
+           
             updateDateSelect(date);
-            entryElement.value = ""; // Clear the textarea
+            entryElement.value = ""; 
         } else {
             alert("Please enter a reflection.");
         }
     });
 
-    // Update the dropdown with available dates
+    
     const updateDateSelect = (date) => {
         if (!dateSelect.querySelector(`option[value="${date}"]`)) {
             const option = document.createElement('option');
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
     };
 
-    // View entries for the selected date
+  
     viewEntriesButton.addEventListener("click", async () => {
         const selectedDate = dateSelect.value;
         await displayEntriesForDate(selectedDate);
@@ -78,10 +78,9 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     
     const displayEntriesForDate = async (date) => {
-        dateEntriesElement.innerHTML = ''; // Clear previous entries
+        dateEntriesElement.innerHTML = ''; 
     
-        // Convert the input date (YYYY-MM-DD) to MM/DD/YYYY
-        const dateParts = date.split('-'); // Split the date string
+        const dateParts = date.split('-'); 
         const formattedDate = `${dateParts[1].padStart(2, '0')}/${dateParts[2].padStart(2, '0')}/${dateParts[0]}`;
     
         const response = await fetch(`/entries?date=${formattedDate}`);
@@ -120,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         	right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       	},
       	initialDate: new Date().toISOString().split('T')[0],
-      	navLinks: true, // can click day/week names to navigate views
+      	navLinks: true, 
       	editable: true,
       	selectable: true,
       	events: [
