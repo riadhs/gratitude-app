@@ -1,4 +1,4 @@
-onst prompts = [
+const prompts = [
         "What made you smile today?",
         "Who are you thankful for today?",
         "What’s a small victory you achieved today?",
