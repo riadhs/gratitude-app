@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 const config = { 
     host: '127.0.0.1', 
     user: 'root', 
-    password: 'ogvYi70u#',  
+    password: '12345',  
     database: 'grat_db', 
     port: 3306 // MySQL default port 
 }; 
