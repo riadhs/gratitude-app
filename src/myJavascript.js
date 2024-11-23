@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dateEntriesElement = document.getElementById("dateEntries");
     const calendarEl = document.getElementById('calendar');
 
-    // Initialize FullCalendar
+    // Initialize FullCalendar      // Alexander's Code Starts
     let calendar = new FullCalendar.Calendar(calendarEl, {
         headerToolbar: {
             left: 'title',
@@ -34,12 +34,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 		success(JSONEvent);
 	}
 	catch (error) {
-		failure(error);
+		failure(error); 
 	}
 	},
-    });
+    });   
 
-    calendar.render();
+    calendar.render();   // Alexander's Code Ends
 
     // Fetch a random prompt
  
@@ -59,7 +59,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const date = formatDate(new Date());
 
-        if (entry) {
+	if (entry) {    //Alexander's Code Starts
+            // Check if entry is already present
+            const existing = await checkIfExists(date, entry);
+	    if (existing.length > 0) {
+            return;  
+	}
             // Send entry to the server
             await fetch('/submit', {
                 method: 'POST',
@@ -67,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ entry, mood, date })
-            });
+            });       // Alexander's Code Ends
 
             const entryHtml =
                 `<div class="entry">
@@ -76,9 +81,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             entriesElement.innerHTML += entryHtml;
 
             // Update FullCalendar events for the specific date
-	   calendar.addEvent({
-		title: entry,
-		start: date,
+
+	   calendar.addEvent({     // Alexander's Code Starts
+		title: entry.entry,
+		start: entry.date,
 		color: mood === 'Sad' ? 'blue':
 		       mood === 'Serious' ? 'red':
 		       mood === 'Happy' ? 'green':
@@ -93,7 +99,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             alert("Please enter a reflection.");
         }
     });
-
+	// Alexander's Code Starts
+     const checkIfExists = async (date, entry) => {
+        const response = await fetch(`/entries?date=${date}`);    
+        const entries = await response.json();
+        return entries.filter(existing=> existing.entry === entry);
+    };     // Alexander's Code Ends
+    
     // Update the dropdown with available dates
     const updateDateSelect = (date) => {
         if (!dateSelect.querySelector(`option[value="${date}"]`)) {
@@ -104,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     };
 
-    // View entries for the selected date and update FullCalendar
+    // View entries for the selected date
     viewEntriesButton.addEventListener("click", async () => {
         const selectedDate = dateSelect.value;
         await displayEntriesForDate(selectedDate);
@@ -119,7 +131,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const response = await fetch(`/entries?date=${formatted}`);
         const entries = await response.json();
 
-	calendar.getEvents().forEach(currentEvent => currentEvent.remove()); // Remove existing events
 
         if (entries.length > 0) {
             entries.forEach(entry => {
@@ -127,21 +138,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     `<div>
                         <strong>${formatted}</strong>: ${entry.entry} (Mood: ${entry.mood})
                     </div>`;
-
-                // Adding entry as a new event on the calendar
-		calendar.addEvent({
-			title: entry.entry,
-			start: entry.date,
-			color: entry.mood === 'Sad' ? 'blue':
-		       	       entry.mood === 'Serious' ? 'red':
-		               entry.mood === 'Happy' ? 'green':
-		               entry.mood === 'Excited' ? 'orange':
-		       'gray'
-		});
+		
 	});
         } else {
             dateEntriesElement.innerHTML = `<p>No record!</p>`;
         }
     };
 });
-
