@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'title',
+        center: 'prev,next today',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: new Date().toISOString().split('T')[0],
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      selectable: true,
+      events: [
+        {
+          title: 'Halloween',
+          start: '2024-10-31',
+          color: 'purple'
+        },
+        {
+          title: 'Thanksgiving',
+          start: '2024-11-28',
+          color: 'burgundy'
+        },
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+<style>
+
+  body {
+    margin: 18px 12px;
+    padding: 3;
+    font-family: Cursive;
+    font-size: 11px;
+  }
+
+  #calendar {
+    max-width: 1500px;
+    margin: 1 auto;
+  }
+
+</style>
+</head>
+<body>
+
+  <div id='calendar'></div>
+
+</body>
+</html>
