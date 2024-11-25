@@ -1,32 +1,172 @@
+/* General Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #FFB6C1, #FFD700); /* Soft pink to golden gradient background */
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Container Styling */
 .container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-    color: #333;
-}
-
-textarea {
+    max-width: 800px;
     width: 100%;
-    height: 100px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Headings */
+h1 {
+    font-size: 36px;
+    color: #3b3a3a;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 24px;
+    color: #3b3a3a;
     margin-bottom: 10px;
 }
 
-#calendar {
-    margin-top: 20px;
+/* Textarea Styling */
+textarea {
+    width: 95%;
+    padding: 18px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #FFB6C1; /* Light pink border when focused */
+    outline: none;
+}
+
+/* Mood Selector Styling */
+#formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #FFB6C1; /* Light pink border when focused */
+    outline: none;
+}
+
+/* Submit Button Styling */
+button {
+    background-color: #FFB6C1; /* Soft pink */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FF80AB; /* Slightly darker pink for hover effect */
+}
+
+/* Entries Section */
+#entries {
+    margin-top: 25px;
+    text-align: left;
+}
+
+#entries ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#entries li {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#entries li .date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* Date Selector Styling */
+#dateSelect {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    textarea {
+        font-size: 14px;
+    }
+
+    select, #dateSelect {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+/* Additional Styles for Improved UX */
+input[type="date"] {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type="date"]:focus {
+    border-color: #FFB6C1;
+    outline: none;
 }
