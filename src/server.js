@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise'); // Using mysql2/promise for async/await support
 const cors = require('cors');
+const fs = require('fs');
 
 
 
@@ -32,14 +33,18 @@ const entries = {};
 //     port: 3306 // MySQL default port
 // };
 
-const config = {
-    host: 'gratitiudeapp.mysql.database.azure.com',  
-    user: 'riad@gratitiudeapp',  
-    password: '123456789Rr',  
-    database: 'grat_db',  
-    port: 3306,  
-    ssl: true 
-  };
+// Database configuration (with SSL)
+const config = { 
+    host: 'gratitiudeapp.mysql.database.azure.com',  // Your Azure MySQL server hostname 
+    user: 'riad@gratitiudeapp',  // Admin username (Azure MySQL format: username@server-name) 
+    password: '123456789Rr',  // Your MySQL password 
+    database: 'grat_db',  // Your actual database name (grat_db) 
+    port: 3306,  // Default MySQL port 
+    ssl: {
+        ca: fs.readFileSync(path.join(__dirname, 'DigiCertGlobalRootCA.crt.pem'))  // Path to the Azure MySQL SSL certificate
+    }  // SSL configuration required for Azure MySQL
+};
+
 
 
 // Handle entry submission and save to database
