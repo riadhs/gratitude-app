@@ -16,7 +16,7 @@ app.use(cors());
 
 // Serve HTML file
 app.get('/', (req, res) => { 
-    res.sendFile(path.join(__dirname, 'Gratitude.html'));
+    res.sendFile(path.join(__dirname, 'Login/LoginPage.html'));
 });
 
 // Store entries
@@ -31,6 +31,15 @@ const config = {
     database: 'grat_db',
     port: 3306 // MySQL default port
 };
+
+// const config = {
+//     host: 'gratitiudeapp.mysql.database.azure.com',  
+//     user: 'riad@gratitiudeapp',  
+//     password: '123456789Rr',  
+//     database: 'grat_db',  
+//     port: 3306,  
+//     ssl: true 
+//   };
 
 
 // Handle entry submission and save to database
@@ -55,7 +64,6 @@ app.post('/submit', async (req, res) => {
 
         // Insert the entry into the database
         const sql = 'INSERT INTO mood_entries (entry, mood, date) VALUES (?, ?, ?)';
-        console.log(date);
         await connection.execute(sql, [entry, mood, date]); // Execute the insert
 
         res.status(201).send(); // Respond with a status code indicating successful creation
@@ -113,5 +121,7 @@ app.get('/entries', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
+
+
 
 
