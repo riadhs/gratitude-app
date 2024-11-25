@@ -23,23 +23,23 @@ app.get('/', (req, res) => {
 const entries = {};
 
 
-// Database configuration
-const config = {
-    host: '127.0.0.1',
-    user: 'root',
-    password: '123456789',
-    database: 'grat_db',
-    port: 3306 // MySQL default port
-};
-
+// // Database configuration
 // const config = {
-//     host: 'gratitiudeapp.mysql.database.azure.com',  
-//     user: 'riad@gratitiudeapp',  
-//     password: '123456789Rr',  
-//     database: 'grat_db',  
-//     port: 3306,  
-//     ssl: true 
-//   };
+//     host: '127.0.0.1',
+//     user: 'root',
+//     password: '123456789',
+//     database: 'grat_db',
+//     port: 3306 // MySQL default port
+// };
+
+const config = {
+    host: 'gratitiudeapp.mysql.database.azure.com',  
+    user: 'riad@gratitiudeapp',  
+    password: '123456789Rr',  
+    database: 'grat_db',  
+    port: 3306,  
+    ssl: true 
+  };
 
 
 // Handle entry submission and save to database
