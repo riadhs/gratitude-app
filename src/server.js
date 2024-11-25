@@ -3,7 +3,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise'); // Using mysql2/promise for async/await support
 const cors = require('cors');
-const fs = require('fs');
 
 
 
@@ -40,9 +39,7 @@ const config = {
     password: '123456789Rr',  // Your MySQL password 
     database: 'grat_db',  // Your actual database name (grat_db) 
     port: 3306,  // Default MySQL port 
-    ssl: {
-        ca: fs.readFileSync(path.join(__dirname, 'DigiCertGlobalRootCA.crt.pem'))  // Path to the Azure MySQL SSL certificate
-    }  // SSL configuration required for Azure MySQL
+    ssl: true;
 };
 
 
