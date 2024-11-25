@@ -23,25 +23,23 @@ app.get('/', (req, res) => {
 const entries = {};
 
 
-// // Database configuration
-// const config = {
-//     host: '127.0.0.1',
-//     user: 'root',
-//     password: '123456789',
-//     database: 'grat_db',
-//     port: 3306 // MySQL default port
-// };
-
-// Database configuration (with SSL)
-const config = { 
-    host: 'gratitiudeapp.mysql.database.azure.com',  // Your Azure MySQL server hostname 
-    user: 'riad@gratitiudeapp',  // Admin username (Azure MySQL format: username@server-name) 
-    password: '123456789Rr',  // Your MySQL password 
-    database: 'grat_db',  // Your actual database name (grat_db) 
-    port: 3306,  // Default MySQL port 
-    ssl: true;
+// Database configuration
+const config = {
+    host: '127.0.0.1',
+    user: 'root',
+    password: '123456789',
+    database: 'grat_db',
+    port: 3306 // MySQL default port
 };
 
+// const config = {
+//     host: 'gratitiudeapp.mysql.database.azure.com',  // Your Azure MySQL server hostname
+//     user: 'riad@gratitiudeapp',  // Admin username (Azure MySQL format: username@server-name)
+//     password: '123456789Rr',  // Your MySQL password
+//     database: 'grat_db',  // Your actual database name (grat_db)
+//     port: 3306,  // Default MySQL port
+//     ssl: true  // SSL is required for Azure MySQL connections
+//   };
 
 
 // Handle entry submission and save to database
@@ -123,7 +121,4 @@ app.get('/entries', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
-
-
-
 
