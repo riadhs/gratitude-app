@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Gratitude Reflection App</title>
+    <link rel="stylesheet" href="mycss.css">
+</head>
+<body>
+    <div class="container">
+	<div class="jumbotron text-center">
+		<h2>Gratitude Reflection</h2>
+	</div>
+        <div id="prompt">
+
+	</div>
+        <textarea id="entry" placeholder="🙋🥺🥹😓😞😖😭😢😥😁🙋😸☺️😊😀😃😄😁😆😂🙋‍♂️🙌🥳🎇🎈"></textarea>
+        <div>
+            <label for="mood">Rate your mood:</label>
+            <select id="mood" class="form-control">
+                <option value="Sad">😞</option>
+                <option value="Serious">😐</option>
+                <option value="Happy">😊</option>
+                <option value="Excited">😁</option>
+            </select>
+	    <br>
+            <button id="submit" class="btn">Submit</button>
+        </div>
+        <h2>Your Entries</h2>
+        <div id="entries"></div>
+        
+        <h2>Select a Date to View Entries</h2>
+        <input type="date" id="dateSelect" class="form-control"/>
+	<br>
+        <button id="viewEntries" class="btn">View Entries</button>
+        <div id="dateEntries"></div>
+    </div>
+    <script src="myJavascript.js"></script>
+    <script src="server.js"></script>
+</body>
+</html>
