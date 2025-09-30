@@ -1,3 +1,8 @@
+Tech stack: Express.js | Node.js | MySQL | JavaScript
+purpose: Intended for use as a personal diary for future reference
+
+Below are queries kept as a reference for the database
+
 # gratitude-app
 gratitude-app
 
